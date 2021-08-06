@@ -1,6 +1,6 @@
 # BUGME - Bug orchestration tool
 ### Summary
-This is a backend application implemented with FastAPI, Mongodb where you can create Users, Brands, Apps and report bugs and add Slack, Clickup integrations. like [Shakebugs](https://www.shakebugs.com/) or [Instabug](https://instabug.com/)
+This is a backend application implemented with FastAPI, Mongodb where you can create Users, Brands, Apps and report bugs and add Slack, Clickup integrations like [Shakebugs](https://www.shakebugs.com/) or [Instabug](https://instabug.com/)
 
 Users can have multiple Brands (Users can be considered as Organizations too)
 Brands can have multiple Apps 
