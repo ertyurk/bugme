@@ -1,0 +1,47 @@
+# docker-compose.prod.yml
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: dockerfile.prod
+    restart: always
+    ports:
+    - 80
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - MONGO_TABLE=${MONGO_TABLE}
+      - secret=${secret}
+      - SPACES_KEY=${SPACES_KEY}
+      - SPACES_SECRET=${SPACES_SECRET}
+      - SPACES_REGION=${SPACES_REGION}
+      - SPACE_NAME=${SPACE_NAME}
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.bugme.rule=Host(`${SUBDOMAIN}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.bugme.tls=true"
+      - "traefik.http.routers.bugme.tls.certresolver=letsencrypt"
+    
+  traefik:
+    build:
+      context: .
+      dockerfile: dockerfile.traefik
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik-public-certificates:/certificates"
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard-bugme.localhost`)"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=developer:$$apr1$$VHqk2H88$$WDCm0LmFYj8ZWI4xwf1lp1"
+
+volumes:
+  traefik-public-certificates:
+        
