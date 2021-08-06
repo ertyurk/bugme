@@ -2,9 +2,8 @@ import motor.motor_asyncio
 from decouple import config
 
 MONGO_URL = config('MONGO_URL')
-MONGO_TABLE = config('MONGO_TABLE')
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
-db = client.MONGO_TABLE
+db = client.bugme
 
 # Collections
 user_collection = db.get_collection('users')
