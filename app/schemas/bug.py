@@ -1,7 +1,7 @@
 def bugEntity(bugs) -> dict:
     return {
         "id": str(bugs["_id"]),
-        "platform": bugs['platform'],
+        "platform": bugs["platform"],
         "sent_to_clickup": bugs["sent_to_clickup"],
         "sent_to_slack": bugs["sent_to_slack"],
         "title": bugs["title"],
@@ -21,5 +21,5 @@ def bugEntity(bugs) -> dict:
         "locale": bugs["locale"],
         "media_path": bugs["media_path"],
         "clickup_task_url": bugs["clickup_task_url"],
-        "created_at": bugs['created_at']
+        "created_at": bugs["created_at"],
     }

@@ -19,7 +19,7 @@ class AppsModel(BaseModel):
                 "bundle_id": "aaa.bbb.ccc.beta",
                 "platform": "Android",
                 "slack_integration": False,
-                "clickup_integration": False
+                "clickup_integration": False,
             }
         }
 
@@ -40,6 +40,6 @@ class UpdateAppsModel(BaseModel):
                 "bundle_id": "aaa.bbb.ccc.beta",
                 "platform": "Android",
                 "slack_integration": False,
-                "clickup_integration": False
+                "clickup_integration": False,
             }
         }

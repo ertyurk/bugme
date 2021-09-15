@@ -4,5 +4,5 @@ def brandEntity(brands) -> dict:
         "brand": brands["brand"],
         "auth_key": brands["auth_key"],
         "user_id": brands["user_id"],
-        "created_at": brands['created_at']
+        "created_at": brands["created_at"],
     }

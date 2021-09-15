@@ -14,7 +14,7 @@ class SlackModel(BaseModel):
             "example": {
                 "app_id": "60a6d09d2500c9e383db6e92",
                 "webhook": "https://hooks.slack.com/services/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",
-                "status": False
+                "status": False,
             }
         }
 
@@ -30,6 +30,6 @@ class UpdateSlackModel(BaseModel):
             "example": {
                 "app_id": "60a6d09d2500c9e383db6e92",
                 "webhook": "https://hooks.slack.com/services/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",
-                "status": False
+                "status": False,
             }
         }

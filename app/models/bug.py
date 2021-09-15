@@ -43,9 +43,9 @@ class BugModel(BaseModel):
                 "session_duration": "345ms",
                 "screen_size": "1080x2240",
                 "density": "5",
-                "user_data": "{\"id\":32082,\"group_id\":1,\"created_at\":\"2020-05-13T13:25:26Z\",\"updated_at\":\"2021-04-13T11:25:27Z\",\"created_in\":\"La3eb English\",\"email\":\"erturk@leanscale.com\",\"firstname\":\"Mehmet\",\"lastname\":\"Erturk\",\"gender\":0,\"store_id\":27,\"website_id\":3,\"addresses\":[{\"id\":18320,\"customer_id\":32082,\"region\":{\"region_code\":null,\"region\":null,\"region_id\":0},\"region_id\":0,\"country_id\":\"SA\",\"street\":[\"gdfgdfg\"],\"telephone\":\"966591826195\",\"postcode\":\"Abaha aljadida - \u0623\u0628\u0647\u0627 \u0627\u0644\u062c\u062f\u064a\u062f\u0647\",\"city\":\"Abha- \u0623\u0628\u0647\u0627\",\"firstname\":\"mehmet\",\"lastname\":\"erturrk\"}]}",
+                "user_data": '{"id":32082,"group_id":1,"created_at":"2020-05-13T13:25:26Z","updated_at":"2021-04-13T11:25:27Z","created_in":"La3eb English","email":"erturk@leanscale.com","firstname":"Mehmet","lastname":"Erturk","gender":0,"store_id":27,"website_id":3,"addresses":[{"id":18320,"customer_id":32082,"region":{"region_code":null,"region":null,"region_id":0},"region_id":0,"country_id":"SA","street":["gdfgdfg"],"telephone":"966591826195","postcode":"Abaha aljadida - \u0623\u0628\u0647\u0627 \u0627\u0644\u062c\u062f\u064a\u062f\u0647","city":"Abha- \u0623\u0628\u0647\u0627","firstname":"mehmet","lastname":"erturrk"}]}',
                 "console_log": "any console log here",
-                "locale": 'en',
+                "locale": "en",
                 "reported_at": "ISO£23452345",
             }
         }
@@ -94,9 +94,9 @@ class UpdateBugModel(BaseModel):
                 "session_duration": "345ms",
                 "screen_size": "1080x2240",
                 "density": "5",
-                "user_data": "{\"id\":32082,\"group_id\":1,\"created_at\":\"2020-05-13T13:25:26Z\",\"updated_at\":\"2021-04-13T11:25:27Z\",\"created_in\":\"La3eb English\",\"email\":\"erturk@leanscale.com\",\"firstname\":\"Mehmet\",\"lastname\":\"Erturk\",\"gender\":0,\"store_id\":27,\"website_id\":3,\"addresses\":[{\"id\":18320,\"customer_id\":32082,\"region\":{\"region_code\":null,\"region\":null,\"region_id\":0},\"region_id\":0,\"country_id\":\"SA\",\"street\":[\"gdfgdfg\"],\"telephone\":\"966591826195\",\"postcode\":\"Abaha aljadida - \u0623\u0628\u0647\u0627 \u0627\u0644\u062c\u062f\u064a\u062f\u0647\",\"city\":\"Abha- \u0623\u0628\u0647\u0627\",\"firstname\":\"mehmet\",\"lastname\":\"erturrk\"}]}",
+                "user_data": '{"id":32082,"group_id":1,"created_at":"2020-05-13T13:25:26Z","updated_at":"2021-04-13T11:25:27Z","created_in":"La3eb English","email":"erturk@leanscale.com","firstname":"Mehmet","lastname":"Erturk","gender":0,"store_id":27,"website_id":3,"addresses":[{"id":18320,"customer_id":32082,"region":{"region_code":null,"region":null,"region_id":0},"region_id":0,"country_id":"SA","street":["gdfgdfg"],"telephone":"966591826195","postcode":"Abaha aljadida - \u0623\u0628\u0647\u0627 \u0627\u0644\u062c\u062f\u064a\u062f\u0647","city":"Abha- \u0623\u0628\u0647\u0627","firstname":"mehmet","lastname":"erturrk"}]}',
                 "console_log": "any console log here",
-                "locale": 'en',
+                "locale": "en",
                 "reported_at": "ISO£23452345",
             }
         }

@@ -7,5 +7,5 @@ def appEntity(apps) -> dict:
         "platform": apps["platform"],
         "slack_integration": apps["slack_integration"],
         "clickup_integration": apps["clickup_integration"],
-        "created_at": apps['created_at']
+        "created_at": apps["created_at"],
     }

@@ -18,21 +18,17 @@ async def retrieve_clickup(id: str) -> dict:
 
 
 async def add_new_clickup(clickup_data: dict) -> dict:
-    clickup = await clickup_collection.insert_one({**clickup_data, 'created_at': str(datetime.now())})
-    new_clickup = await clickup_collection.find_one({
-        "_id": clickup.inserted_id
-    })
+    clickup = await clickup_collection.insert_one(
+        {**clickup_data, "created_at": str(datetime.now())}
+    )
+    new_clickup = await clickup_collection.find_one({"_id": clickup.inserted_id})
     return clickupEntity(new_clickup)
 
 
 async def update_clickup_data(id: str, data: dict) -> dict:
-    clickup = await clickup_collection.find_one({
-        "_id": ObjectId(id)
-    })
+    clickup = await clickup_collection.find_one({"_id": ObjectId(id)})
     if clickup:
-        clickup_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": data})
+        clickup_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return True
 
 

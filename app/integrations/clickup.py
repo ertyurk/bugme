@@ -4,31 +4,38 @@ from app.database.crud.clickup import retrieve_clickup_integrations_of_an_app
 
 
 async def clickup_integration(data: dict, app: dict) -> dict:
-    if app['clickup_integration'] != False:
+    try:
+        if not app["clickup_integration"] != False:
+            print(f"INFO: Clickup Integration is disabled for App: {app['id']}")
+            raise Exception
+
         # Create clickup task if it wasn't created.
-        if data['sent_to_clickup'] != True:
-            cu_config = await retrieve_clickup_integrations_of_an_app(app['id'])
-            cu_task = await create_clickup_task(data, cu_config[0])
+        if not data["sent_to_clickup"] != True:
+            print(f"INFO: Clickup task already created Bug: {data['id']}")
+            raise Exception
 
-            # If the status is 200 for slack integration
-            # append cu_task url and update sent_to_clickup calue
+        cu_config = await retrieve_clickup_integrations_of_an_app(app["id"])
+        cu_task = await create_clickup_task(data, cu_config[0])
 
-            if cu_task['status'] == 200:
-                print(
-                    f"INFO: Clickup task created for the task as {cu_task['response']['name']} - #{cu_task['response']['id']} for Bug ID: {data['id']}")
-                data['sent_to_clickup'] = True
-                data['clickup_task_url'] = cu_task['response']['url']
-            else:
-                print(
-                    f"Clickup task creation request received an error from Clickup", cu_task)
-        else:
+        # If the status is 200 for slack integration
+        # append cu_task url and update sent_to_clickup calue
+
+        if not cu_task["status"] == 200:
             print(
-                f"INFO: Clickup task already created Bug: {data['id']}")
-    else:
-        print(
-            f"INFO: Clickup Integration is disabled for App: {app['id']}")
+                f"Clickup task creation request received an error from Clickup: {cu_task}"
+            )
+            raise Exception
 
-    return data
+        print(
+            f"INFO: Clickup task created for the task as {cu_task['response']['name']} \
+                - #{cu_task['response']['id']} for Bug ID: {data['id']}"
+        )
+
+        data["sent_to_clickup"] = True
+        data["clickup_task_url"] = cu_task["response"]["url"]
+        return data
+    except:
+        return data
 
 
 async def create_clickup_task(data: dict, config: dict) -> dict:
@@ -59,19 +66,15 @@ async def create_clickup_task(data: dict, config: dict) -> dict:
         "name": f"{data['category']} | {data['title']}",
         "description": description,
         "tags": [f"{data['platform']}"],
-        "status": "IMPORTED"
+        "status": "IMPORTED",
     }
 
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": config['auth_key']
-    }
+    headers = {"Content-Type": "application/json", "Authorization": config["auth_key"]}
 
-    r = requests.post(f"https://api.clickup.com/api/v2/list/{config['task_list_id']}/task",
-                      json=payload,
-                      headers=headers)
+    r = requests.post(
+        f"https://api.clickup.com/api/v2/list/{config['task_list_id']}/task",
+        json=payload,
+        headers=headers,
+    )
 
-    return {
-        'status': r.status_code,
-        'response': r.json()
-    }
+    return {"status": r.status_code, "response": r.json()}

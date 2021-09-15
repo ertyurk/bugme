@@ -16,29 +16,34 @@ async def main_background_task_handler(id: str, files) -> None:
         media = await media_wrapper(id, files)
 
         # run integrations if media uploaded successfully.
-        if media['status'] != False:
-            bug = await retrieve_bug(id)
-            await run_integration(bug)
+        if media["status"] != False:
+            await run_integration(id)
         else:
             print(f"Unable to upload media for Bug ID: {id}")
-            
+
     except Exception:
-        print('Error: Background task faced with an error.')
+        print("Error: Background task faced with an error.")
 
 
-async def run_integration(data: dict) -> None:
-    # check whether media uploaded or not.
-    if len(data['media_path']) > 0:
-        # Retrieve app data with bundle id
-        apps = await retrive_apps_of_bundles(data['bundle_id'])
-        if apps[0]:
+async def run_integration(id: str) -> None:
+    # Retrieve bug and check whether media uploaded or not.
+    bug = await retrieve_bug(id)
+    if not len(bug["media_path"]) > 0:
+        print("INFO: There is no media uploaded for the bug, Integration passed.")
+        raise Exception
 
-            res = await clickup_integration(data, apps[0])
-            res = await slack_integration(data, apps[0])
+    # Retrieve app data with bundle id
+    apps = await retrive_apps_of_bundles(bug["bundle_id"], bug["platform"])
 
-            # finally, update the bug record
-            await update_bug_data_for_integration(res)
-            print(f"INFO: Bug data updated for ID: {res['id']}")
+    if apps[0]:
+
+        # try to send to clickup
+        res = await clickup_integration(bug, apps[0])
+        res = await slack_integration(res, apps[0])
+
+        # finally, update the bug record
+        await update_bug_data_for_integration(res)
+        print(f"INFO: Bug data updated for ID: {res['id']}")
 
     else:
-        print("INFO: There is no media uploaded for the bug, Integration passed.")
+        print(f"INFO: There is no integration available for this bug")
