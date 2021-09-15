@@ -11,5 +11,5 @@ def clickupEntity(clickup) -> dict:
         "assigned_status": clickup["assigned_status"],
         "task_list_id": clickup["task_list_id"],
         "task_label": clickup["task_label"],
-        "created_at": clickup['created_at']
+        "created_at": clickup["created_at"],
     }

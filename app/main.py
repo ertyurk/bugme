@@ -13,7 +13,7 @@ app = FastAPI(
     For bug reporting, you need to use api key generated from brand (The Api key will be generated when you add a new brand automatically but also, you can generate a new one via {API_URL}/api/v1/brands/get-api-key with Brand ID param)
     Client apps can report bugs along with Bundle ID and Platform and other details can be found in {API_URL}/docs. If the bundle ID is not saved, We create a new APP for that bundle ID along with correspondent Brand ID and User ID and platform information.
     """,
-    version='1.0.0'
+    version="1.0.0",
 )
 
 app.add_middleware(

@@ -14,10 +14,14 @@ async def retrieve_brands():
 
 
 async def add_new_brand(brand_data: dict) -> dict:
-    brand = await brand_collection.insert_one({**brand_data, "auth_key": generate_api_key(), 'created_at': str(datetime.now())})
-    new_brand = await brand_collection.find_one({
-        "_id": brand.inserted_id
-    })
+    brand = await brand_collection.insert_one(
+        {
+            **brand_data,
+            "auth_key": generate_api_key(),
+            "created_at": str(datetime.now()),
+        }
+    )
+    new_brand = await brand_collection.find_one({"_id": brand.inserted_id})
     return brandEntity(new_brand)
 
 
@@ -28,30 +32,18 @@ async def retrieve_brand(id: str) -> dict:
 
 
 async def update_brand_data(id: str, data: dict) -> dict:
-    brand = await brand_collection.find_one({
-        "_id": ObjectId(id)
-    })
+    brand = await brand_collection.find_one({"_id": ObjectId(id)})
     if brand:
-        brand_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": data})
+        brand_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return True
 
 
 async def update_brand_api_key(id: str) -> dict:
-    brand = await brand_collection.find_one({
-        "_id": ObjectId(id)
-    })
-    brand['auth_key'] = generate_api_key()
+    brand = await brand_collection.find_one({"_id": ObjectId(id)})
+    brand["auth_key"] = generate_api_key()
     if brand:
-        brand_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": brand})
-        return {
-            "id": id,
-            "brand": brand['brand'],
-            "auth_key": brand['auth_key']
-        }
+        brand_collection.update_one({"_id": ObjectId(id)}, {"$set": brand})
+        return {"id": id, "brand": brand["brand"], "auth_key": brand["auth_key"]}
 
 
 async def retrive_brands_of_user(id: str) -> dict:

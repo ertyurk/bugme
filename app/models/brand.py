@@ -12,7 +12,7 @@ class BrandModel(BaseModel):
         schema_extra = {
             "example": {
                 "brand": "Lean Scale Bugger",
-                "user_id": "60a57e1d1201f43c9c51c044"
+                "user_id": "60a57e1d1201f43c9c51c044",
             }
         }
 
@@ -26,6 +26,6 @@ class UpdateBrandModel(BaseModel):
         schema_extra = {
             "example": {
                 "brand": "Lean Scale Bugger",
-                "user_id": "60a57e1d1201f43c9c51c044"
+                "user_id": "60a57e1d1201f43c9c51c044",
             }
         }

@@ -16,6 +16,6 @@ def generate_api_key():
     key_list = list(key)
     # shuffle all characters
     random.SystemRandom().shuffle(key_list)
-    key = ''.join(key_list)
-    final = 'pk_' + key
+    key = "".join(key_list)
+    final = "pk_" + key
     return final

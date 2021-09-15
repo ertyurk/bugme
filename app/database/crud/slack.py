@@ -19,7 +19,9 @@ async def retrieve_slack(id: str) -> dict:
 
 
 async def add_new_slack(slack_data: dict) -> dict:
-    slack = await slack_collection.insert_one({**slack_data, 'created_at': str(datetime.now())})
+    slack = await slack_collection.insert_one(
+        {**slack_data, "created_at": str(datetime.now())}
+    )
     new_slack = await slack_collection.find_one({"_id": ObjectId(slack.inserted_id)})
     return slackEntity(new_slack)
 
@@ -27,9 +29,7 @@ async def add_new_slack(slack_data: dict) -> dict:
 async def update_slack_data(id: str, data: dict) -> dict:
     slack = await retrieve_slack(id)
     if slack:
-        slack_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": data})
+        slack_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return True
 
 

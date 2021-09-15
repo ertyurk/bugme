@@ -13,11 +13,11 @@ async def retrieve_apps() -> dict:
 
 async def add_new_app(app_data: dict) -> dict:
     # convert platform type to upper case
-    app_data['platform'] = app_data['platform'].upper()
-    app = await apps_collection.insert_one({**app_data, 'created_at': str(datetime.now())})
-    new_app = await apps_collection.find_one({
-        "_id": app.inserted_id
-    })
+    app_data["platform"] = app_data["platform"].upper()
+    app = await apps_collection.insert_one(
+        {**app_data, "created_at": str(datetime.now())}
+    )
+    new_app = await apps_collection.find_one({"_id": app.inserted_id})
     return appEntity(new_app)
 
 
@@ -29,16 +29,12 @@ async def retrieve_app(id: str) -> dict:
 
 async def update_app_data(id: str, data: dict) -> dict:
     # convert platform type to upper case
-    if data['platform']:
-        data["platform"] = data['platform'].upper()
-    
-    app = await apps_collection.find_one({
-        "_id": ObjectId(id)
-    })
+    if data["platform"]:
+        data["platform"] = data["platform"].upper()
+
+    app = await apps_collection.find_one({"_id": ObjectId(id)})
     if app:
-        apps_collection.update_one(
-            {"_id": ObjectId(id)},
-            {"$set": data})
+        apps_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return True
 
 
@@ -58,6 +54,6 @@ async def retrive_apps_of_brand(id: str) -> dict:
 
 async def retrive_apps_of_bundles(id: str, platform: str) -> dict:
     apps = []
-    async for app in apps_collection.find({"bundle_id": id, "platform":platform}):
+    async for app in apps_collection.find({"bundle_id": id, "platform": platform}):
         apps.append(appEntity(app))
     return apps
