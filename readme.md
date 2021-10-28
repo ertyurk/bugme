@@ -1,4 +1,7 @@
 # BUGME - Bug orchestration tool
+
+Disclaimer: Authenticator is working well but authorization is not inplemented yet. Please do not use in such environments that can effect you financially.
+
 ### Summary
 This is a backend application implemented with FastAPI, Mongodb where you can create Users, Brands, Apps and report bugs and add Slack, Clickup integrations like [Shakebugs](https://www.shakebugs.com/) or [Instabug](https://instabug.com/)
 
@@ -41,7 +44,7 @@ In order to use this application, you need to create a Digitalocean spaces (or A
     ```
 
 
-## Production setup
+## Docker setup
 
 1. Clone this repo.
         
