@@ -15,7 +15,7 @@ Client apps can report bugs along with Bundle ID and Platform and other details 
 - Makesure python version is 3.7 or more.
 - Clone the repo.
     ```sh
-    git clone https://gitlab.com/leanscale-internal/ls-bugger/backend.git
+    git clone https://github.com/ertyurk/bugme-backend.git
     ```
 - Go to project folder and Create a virtual environment.
     ```sh
@@ -47,7 +47,7 @@ Client apps can report bugs along with Bundle ID and Platform and other details 
 1. Clone this repo.
         
     ```
-    git clone https://gitlab.com/leanscale-internal/ls-bugger/backend.git
+    git clone https://github.com/ertyurk/bugme-backend.git
     ```
         
 2. Update DNS config from CF or other domain provider.
