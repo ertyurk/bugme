@@ -1,6 +1,6 @@
 # BUGME - Bug orchestration tool
 
-Disclaimer: Authenticator is working well but authorization is not inplemented yet. Please do not use in such environments that can effect you financially.
+Disclaimer: Authenticator is working well but authorization is not implemented yet. Please do not use in such environments that can effect you financially.
 
 ### Summary
 This is an application implemented with FastAPI, Mongodb where you can create Users, Brands, Apps and report bugs and add Slack, Clickup integrations. 
@@ -64,7 +64,7 @@ Client apps can report bugs along with Bundle ID and Platform and other details 
     docker-compose -f docker-compose.prod.yml up -d --build
     ```
 
-### Trouble shoot
+### Troubleshoot
 1. If you want to run docker as non-root user then you need to add it to the docker group.
     1. Create the docker group if it does not exist
     ```sudo groupadd docker```
