@@ -64,18 +64,6 @@ async def update_a_clickup_integration(
 
 
 @router.delete("/{id}/", response_description="Delete the integration")
-async def delete_integration(id: str):
-    delete_result = await clickup_collection.delete_one({"_id": id})
-
-    if delete_result.deleted_count == 1:
-        return JSONResponse(status_code=status.HTTP_204_NO_CONTENT)
-
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND, detail=f"Integration {id} not found"
-    )
-
-
-@router.delete("/{id}/", response_description="Delete the integration")
 async def delete_clickup_integration(id: str):
     deleted_clickup = await delete_integration(id)
     return (

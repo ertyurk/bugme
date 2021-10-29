@@ -4,6 +4,7 @@ def bugEntity(bugs) -> dict:
         "platform": bugs["platform"],
         "sent_to_clickup": bugs["sent_to_clickup"],
         "sent_to_slack": bugs["sent_to_slack"],
+        "sent_to_jira": bugs["sent_to_jira"],
         "title": bugs["title"],
         "description": bugs["description"],
         "reporter_email": bugs["reporter_email"],
@@ -21,5 +22,6 @@ def bugEntity(bugs) -> dict:
         "locale": bugs["locale"],
         "media_path": bugs["media_path"],
         "clickup_task_url": bugs["clickup_task_url"],
+        "jira_task_url": bugs["jira_task_url"],
         "created_at": bugs["created_at"],
     }

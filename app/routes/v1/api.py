@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from .endpoints import users, brands, apps, bugs, slack, clickup
+from .endpoints import users, brands, apps, bugs, slack, clickup, jira
 from app.middlewares.auth.jwt_bearer import JWTBearer
 
 token_listener = JWTBearer()
@@ -29,5 +29,11 @@ router.include_router(
     clickup.router,
     prefix="/clickup-integration",
     tags=["Clickup Integration"],
+    dependencies=[Depends(token_listener)],
+)
+router.include_router(
+    jira.router,
+    prefix="/jira-integration",
+    tags=["Jira Integration"],
     dependencies=[Depends(token_listener)],
 )

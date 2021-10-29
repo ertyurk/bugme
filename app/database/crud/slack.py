@@ -3,6 +3,7 @@ from bson import ObjectId
 
 from app.schemas.slack import *
 from app.database.db import slack_collection
+from app.database.crud.app import update_app_for_integration
 
 
 async def retrieve_slacks() -> dict:
@@ -23,6 +24,8 @@ async def add_new_slack(slack_data: dict) -> dict:
         {**slack_data, "created_at": str(datetime.now())}
     )
     new_slack = await slack_collection.find_one({"_id": ObjectId(slack.inserted_id)})
+    await update_app_for_integration(slack_data["app_id"], "slack_integration", True)
+
     return slackEntity(new_slack)
 
 

@@ -8,6 +8,8 @@ from app.database.crud.app import *
 from app.database.crud.bug import retrive_bugs_from_bundle
 from app.database.crud.clickup import retrieve_clickup_integrations_of_an_app
 from app.database.crud.slack import retrieve_slack_integrations_of_an_app
+from app.database.crud.jira import retrieve_jira_integrations_of_an_app
+
 
 router = APIRouter()
 
@@ -100,6 +102,24 @@ async def retrieve_clickup_integrations_of_the_app(app_id: str):
             f"Clickup integration are retrieved successfully for the App ID: {app_id}",
         )
         if clickups
+        else ErrorResponseModel(
+            "An error occured.", status.HTTP_404_NOT_FOUND, "Integration doesn't exist."
+        )
+    )
+
+
+@router.get(
+    "/integrations/jira/",
+    response_description="Jira integrations retrieved from App.",
+)
+async def retrieve_jira_integrations_of_the_app(app_id: str):
+    jiras = await retrieve_jira_integrations_of_an_app(app_id)
+    return (
+        ResponseModel(
+            jiras,
+            f"Clickup integration are retrieved successfully for the App ID: {app_id}",
+        )
+        if jiras
         else ErrorResponseModel(
             "An error occured.", status.HTTP_404_NOT_FOUND, "Integration doesn't exist."
         )

@@ -1,7 +1,9 @@
 from datetime import datetime
 from bson import ObjectId
+
 from app.schemas.clickup import *
 from app.database.db import clickup_collection
+from app.database.crud.app import update_app_for_integration
 
 
 async def retrieve_clickups() -> dict:
@@ -22,6 +24,9 @@ async def add_new_clickup(clickup_data: dict) -> dict:
         {**clickup_data, "created_at": str(datetime.now())}
     )
     new_clickup = await clickup_collection.find_one({"_id": clickup.inserted_id})
+    await update_app_for_integration(
+        clickup_data["app_id"], "clickup_integration", True
+    )
     return clickupEntity(new_clickup)
 
 

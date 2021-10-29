@@ -1,6 +1,5 @@
-from fastapi import APIRouter, status, Body, HTTPException
+from fastapi import APIRouter, status, Body
 from fastapi.encoders import jsonable_encoder
-from starlette.responses import JSONResponse
 
 from app.models.common import *
 from app.models.slack import *
