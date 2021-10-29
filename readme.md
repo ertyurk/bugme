@@ -1,4 +1,7 @@
 # BUGME - Bug orchestration tool
+
+Disclaimer: Authenticator is working well but authorization is not inplemented yet. Please do not use in such environments that can effect you financially.
+
 ### Summary
 This is an application implemented with FastAPI, Mongodb where you can create Users, Brands, Apps and report bugs and add Slack, Clickup integrations. 
 
@@ -38,7 +41,6 @@ Client apps can report bugs along with Bundle ID and Platform and other details 
     ```sh
     uvicorn app.main:app --reload
     ```
-
 
 ## Setup with Docker
 
