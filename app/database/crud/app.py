@@ -27,6 +27,15 @@ async def retrieve_app(id: str) -> dict:
         return appEntity(app)
 
 
+async def update_app_for_integration(id: str, key: str, value: str) -> dict:
+    app = await apps_collection.find_one({"_id": ObjectId(id)})
+    if app:
+        app[key] = value
+        apps_collection.update_one({"_id": ObjectId(id)}, {"$set": app})
+        return True
+    return False
+
+
 async def update_app_data(id: str, data: dict) -> dict:
     # convert platform type to upper case
     if data["platform"]:
@@ -36,6 +45,7 @@ async def update_app_data(id: str, data: dict) -> dict:
     if app:
         apps_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         return True
+    return False
 
 
 async def retrive_apps_of_user(id: str) -> dict:

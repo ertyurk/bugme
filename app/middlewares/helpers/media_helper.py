@@ -14,7 +14,7 @@ session = boto3.session.Session()
 client = session.client(
     "s3",
     region_name=SPACES_REGION,
-    endpoint_url=f"https://{SPACES_REGION}.digitaloceanspaces.com",
+    # endpoint_url=f"https://{SPACES_REGION}.digitaloceanspaces.com",
     aws_access_key_id=SPACES_KEY,
     aws_secret_access_key=SPACES_SECRET,
 )
@@ -58,9 +58,9 @@ async def media_uploader(file, file_name: str, content_type: str) -> dict:
         return {"status": False, "error": e}
 
     print(
-        f"INFO: File object uploaded to https://{SPACE_NAME}.{SPACES_REGION}.digitaloceanspaces.com/{file_name}"
+        f"INFO: File object uploaded to https://{SPACE_NAME}.s3.{SPACES_REGION}.amazonaws.com/{file_name}"
     )
     return {
         "status": True,
-        "media_url": f"https://{SPACE_NAME}.{SPACES_REGION}.digitaloceanspaces.com/{file_name}",
+        "media_url": f"https://{SPACE_NAME}.s3.{SPACES_REGION}.amazonaws.com/{file_name}",
     }

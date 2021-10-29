@@ -22,9 +22,11 @@ class BugModel(BaseModel):
     locale: str = Field(...)
     media_path: Optional[list]
     clickup_task_url: Optional[str]
+    jira_task_url: Optional[str]
     reported_at: str = Field(...)
     sent_to_clickup: bool = False
     sent_to_slack: bool = False
+    sent_to_jira: bool = False
 
     class Config:
         allow_population_by_field_name = True
@@ -71,9 +73,11 @@ class UpdateBugModel(BaseModel):
     locale: Optional[str]
     media_path: Optional[str]
     clickup_task_url: Optional[str]
+    jira_task_url: Optional[str]
     reported_at: Optional[str]
     sent_to_clickup: Optional[bool]
     sent_to_slack: Optional[bool]
+    sent_to_jira: Optional[bool]
 
     class Config:
         allow_population_by_field_name = True

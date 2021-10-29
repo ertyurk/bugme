@@ -1,5 +1,6 @@
 from app.database.crud.bug import retrieve_bug, update_bug_data_for_integration
 from app.database.crud.app import retrive_apps_of_bundles
+from app.integrations.jira import jira_integration
 from app.integrations.slack import slack_integration
 from app.integrations.clickup import clickup_integration
 from app.middlewares.helpers.media_helper import media_wrapper
@@ -40,6 +41,7 @@ async def run_integration(id: str) -> None:
         # try to send to clickup
         res = await clickup_integration(bug, apps[0])
         res = await slack_integration(res, apps[0])
+        res = await jira_integration(res, apps[0])
 
         # finally, update the bug record
         await update_bug_data_for_integration(res)
